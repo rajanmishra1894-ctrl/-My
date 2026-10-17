@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Roots Academy</title>
+<script src="exceljs.min.js" onerror="var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js';document.head.appendChild(s)"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#f4f3ee;--card:#fff;--ink:#1c2333;--mute:#6a7286;--line:#e2e0d8;--brand:#2a3f8f;--on:#fff;--g:#1b7f46;--gb:#dcf2e4;--r:#c22d2d;--rb:#fbe1df;--o:#b85f00;--ob:#fde8c9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11141b;--card:#1b202b;--ink:#eceef4;--mute:#9aa2b5;--line:#2c3342;--brand:#6c86e6;--on:#0f1320;--g:#5fd28d;--gb:#173a27;--r:#ff8a80;--rb:#44201f;--o:#ffb255;--ob:#432c0e}}
+:root[data-theme="dark"]{--bg:#11141b;--card:#1b202b;--ink:#eceef4;--mute:#9aa2b5;--line:#2c3342;--brand:#6c86e6;--on:#0f1320;--g:#5fd28d;--gb:#173a27;--r:#ff8a80;--rb:#44201f;--o:#ffb255;--ob:#432c0e}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:500 16px/1.4 Hind,system-ui,sans-serif;padding-bottom:84px;-webkit-tap-highlight-color:transparent}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);display:flex;align-items:center;gap:10px;padding:12px 16px;z-index:5;border-bottom:1px solid var(--line)}
+header h1{font-size:20px;margin:0;flex:1;font-weight:700}
+header input[type=month]{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:7px 10px}
+.back{border:0;background:none;font-size:15px;color:var(--brand);font-weight:600;padding:6px 0}
+main{padding:14px 16px;max-width:640px;margin:0 auto}
+.row{display:flex;gap:8px;margin-bottom:10px}
+.row input,.row select,.f input,.f select{flex:1;min-width:0;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:10px 12px}
+.btn{border:0;background:var(--brand);color:var(--on);border-radius:10px;padding:10px 16px;font-weight:600}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:var(--r);color:#fff}
+.chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:20px;padding:6px 12px;white-space:nowrap;font-size:14px}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-left-width:5px;border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.card.paid{border-left-color:var(--g)}.card.unpaid{border-left-color:var(--r)}.card.pending{border-left-color:var(--o)}
+.top{display:flex;align-items:center;gap:10px}
+.top .n{flex:1;min-width:0}
+.name{font-weight:700;font-size:17px}
+.sub{color:var(--mute);font-size:14px;display:flex;gap:12px;flex-wrap:wrap}
+.pill{border:0;border-radius:20px;padding:6px 14px;font-weight:700;font-size:14px;min-width:84px}
+.pill.paid{background:var(--gb);color:var(--g)}.pill.unpaid{background:var(--rb);color:var(--r)}.pill.pending{background:var(--ob);color:var(--o)}
+.link{border:0;background:none;color:var(--mute);font-size:13px;padding:6px 0 0}
+.empty{color:var(--mute);text-align:center;padding:30px 10px}
+.cnt{display:flex;gap:12px;font-size:14px;margin-top:6px}
+.cnt b{font-weight:700}.P{color:var(--g)}.A{color:var(--r)}.L{color:var(--o)}
+.qa{display:flex;gap:6px;margin-top:8px;align-items:center;font-size:13px;color:var(--mute)}
+.qa button{border:1px solid var(--line);background:var(--card);border-radius:8px;width:38px;height:34px;font-weight:700}
+.qa button.sel.P{background:var(--gb)}.qa button.sel.A{background:var(--rb)}.qa button.sel.L{background:var(--ob)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.wd{text-align:center;font-size:12px;color:var(--mute)}
+.d{aspect-ratio:1;border:1px solid var(--line);background:var(--card);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;color:var(--mute);padding:0}
+.d b{font-size:17px;line-height:1}
+.d.P{background:var(--gb);border-color:var(--g)}.d.A{background:var(--rb);border-color:var(--r)}.d.L{background:var(--ob);border-color:var(--o)}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);z-index:6}
+nav button{flex:1;border:0;background:none;padding:14px 0;font-weight:600;color:var(--mute)}
+nav button.on{color:var(--brand);box-shadow:inset 0 3px 0 var(--brand)}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;z-index:20}
+.sheet{background:var(--card);width:100%;max-width:640px;margin:0 auto;border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+.sheet h2{margin:0 0 12px;font-size:19px}
+.f{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;font-size:14px;color:var(--mute)}
+.acts{display:flex;gap:8px;justify-content:flex-end}
+.lock{max-width:360px;margin:0 auto;padding:56px 20px}.lock h1{font-size:24px;margin:0 0 14px}.lock .btn{width:100%}
+.err{color:var(--r);min-height:22px;font-size:14px;margin-bottom:8px}
+body:not([data-role=admin]) .link,body:not([data-role=admin]) .row .btn,body:not([data-role=admin]) .qa{display:none}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+var KEY='coaching-v1',now=new Date();
+function ym(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')}
+var S={students:[],teachers:[],month:ym(now),tab:'students',q:'',board:'All',st:'All',open:null,sheet:null,notices:[],cfg:{name:'THE ROOTS ACADEMY',upi:'',pin:''},user:null,flash:'',lock:{role:'admin',err:'',fails:0,until:0}};
+var LBL={paid:'Paid',pending:'Pending',unpaid:'Unpaid'},NEXT={unpaid:'pending',pending:'paid',paid:'unpaid'};
+var AN={'':'P',P:'A',A:'L',L:''};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function load(){
+ try{var r=localStorage.getItem(KEY);if(r){var d=JSON.parse(r);S.students=d.students||[];S.teachers=d.teachers||[];S.notices=d.notices||[];S.cfg=d.cfg||S.cfg;if(!S.cfg.name)S.cfg.name='THE ROOTS ACADEMY';S.students.concat(S.teachers).forEach(function(o){if(!o.ch)o.ch=H(o.id+'1234');if(o.id.indexOf('TRA-')!==0)o.id='TRA-'+o.id});return}}catch(e){}
+ var p={};p[S.month]='paid';var q={};q[S.month]='pending';
+ S.students=[{id:'TRA-S001',name:'Aarav Kumar',cls:'10',board:'CBSE',fee:1500,mode:{},ch:H('S0011234'),pay:p},{id:'TRA-S002',name:'Priya Sinha',cls:'9',board:'BSEB',fee:1200,mode:{},ch:H('S0021234'),pay:q},{id:'TRA-S003',name:'Rohan Das',cls:'8',board:'ICSE',fee:1000,mode:{},ch:H('S0031234'),pay:{}}];
+ S.teachers=[{id:'TRA-T001',name:'Anita Sharma',att:{},ch:H('T0011234')},{id:'TRA-T002',name:'Vikram Singh',att:{},ch:H('T0021234')}];
+ S.notices=[{id:1,t:'Fee reminder',b:'Monthly fees are due by the 10th.',to:'All',d:'17 Oct'}];
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({students:S.students,teachers:S.teachers,notices:S.notices,cfg:S.cfg}))}catch(e){}}
+function nextId(pre,list){var m=0;list.forEach(function(x){m=Math.max(m,parseInt(x.id.replace(/\D/g,''),10)||0)});return'TRA-'+pre+String(m+1).padStart(3,'0')}
+function stOf(s){return(s.pay&&s.pay[S.month])||'unpaid'}
+function mlabel(){var a=S.month.split('-');return new Date(+a[0],+a[1]-1,1).toLocaleString('en-IN',{month:'long',year:'numeric'})}
+function tAtt(t){return(t.att&&t.att[S.month])||{}}
+function counts(t){var c={P:0,A:0,L:0},a=tAtt(t);for(var k in a)if(c[a[k]]!==undefined)c[a[k]]++;return c}
+function filtered(){
+ var q=S.q.trim().toLowerCase();
+ return S.students.filter(function(s){
+  return(S.board==='All'||s.board===S.board)&&(S.st==='All'||stOf(s)===S.st)&&(!q||s.name.toLowerCase().indexOf(q)>-1||s.id.toLowerCase().indexOf(q)>-1)});
+}
+function listHTML(){
+ var l=filtered();
+ if(!l.length)return'<div class="empty">No students match. Add a student or change the filters.</div>';
+ return l.map(function(s){var st=stOf(s);
+  return'<div class="card '+st+'"><div class="top"><div class="n"><div class="name">'+esc(s.name)+'</div><div class="sub"><span>'+s.id+'</span><span>Class '+esc(s.cls)+'</span><span>'+s.board+'</span>'+(st==='paid'&&(s.mode||{})[S.month]?'<span>'+s.mode[S.month]+'</span>':'')+(s.fee?'<span>₹'+s.fee+'</span>':'')+'</div></div>'
+  +'<button class="pill '+st+'" data-act="pay" data-id="'+s.id+'">'+LBL[st]+'</button></div>'
+  +'<button class="link" data-act="del" data-id="'+s.id+'">Remove student</button></div>'}).join('');
+}
+function studentsHTML(){
+ var n={paid:0,pending:0,unpaid:0};S.students.forEach(function(s){n[stOf(s)]++});
+ var chips=[['All','All '+S.students.length],['paid','Paid '+n.paid],['pending','Pending '+n.pending],['unpaid','Unpaid '+n.unpaid]].map(function(c){
+  return'<button class="chip'+(S.st===c[0]?' on':'')+'" data-act="flt" data-v="'+c[0]+'">'+c[1]+'</button>'}).join('');
+ var bo=['All','CBSE','ICSE','BSEB'].map(function(b){return'<option'+(S.board===b?' selected':'')+'>'+b+'</option>'}).join('');
+ return'<div class="chips">'+chips+'</div><div class="row"><input id="q" type="search" placeholder="Search name or ID" value="'+esc(S.q)+'"><select id="bf" aria-label="Board">'+bo+'</select></div>'
+ +'<div class="row"><button class="btn" style="flex:1" data-act="add">Add student</button></div><div id="list">'+listHTML()+'</div>';
+}
+function teachersHTML(){
+ var today=ym(now)===S.month,dk=String(now.getDate());
+ var h='<div class="row"><button class="btn" style="flex:1" data-act="add">Add teacher</button></div>';
+ if(!S.teachers.length)return h+'<div class="empty">No teachers yet. Add a teacher to start marking attendance.</div>';
+ return h+S.teachers.filter(function(t){return S.user.role==='admin'||t.id===S.user.id}).map(function(t){var c=counts(t),cur=tAtt(t)[dk]||'';
+  var qa=today?'<div class="qa">Today '+['P','A','L'].map(function(v){return'<button class="'+v+(cur===v?' sel':'')+'" data-act="qa" data-id="'+t.id+'" data-v="'+v+'">'+v+'</button>'}).join('')+'</div>':'';
+  return'<div class="card" style="border-left-color:var(--brand)"><div class="top"><div class="n"><div class="name">'+esc(t.name)+'</div><div class="sub"><span>'+t.id+'</span></div>'
+  +'<div class="cnt"><span class="P">Present <b>'+c.P+'</b></span><span class="A">Absent <b>'+c.A+'</b></span><span class="L">Leave <b>'+c.L+'</b></span></div></div>'
+  +'<button class="btn ghost" data-act="open" data-id="'+t.id+'">Month view</button></div>'+qa
+  +'<button class="link" data-act="del" data-id="'+t.id+'">Remove teacher</button></div>'}).join('');
+}
+function detailHTML(){
+ var t=S.teachers.filter(function(x){return x.id===S.open})[0];if(!t)return'';
+ var a=S.month.split('-'),y=+a[0],m=+a[1],days=new Date(y,m,0).getDate(),off=new Date(y,m-1,1).getDay(),att=tAtt(t),c=counts(t);
+ var g=['S','M','T','W','T','F','S'].map(function(d){return'<div class="wd">'+d+'</div>'}).join('');
+ for(var i=0;i<off;i++)g+='<div></div>';
+ for(var d=1;d<=days;d++){var v=att[d]||'';g+='<button class="d '+v+'" data-act="att" data-id="'+t.id+'" data-d="'+d+'"><b>'+d+'</b>'+(v||'&nbsp;')+'</button>'}
+ return'<div class="name" style="font-size:20px">'+esc(t.name)+'</div><div class="sub" style="margin-bottom:6px"><span>'+t.id+'</span><span>'+mlabel()+'</span></div>'
+ +'<div class="cnt" style="margin-bottom:14px"><span class="P">Present <b>'+c.P+'</b></span><span class="A">Absent <b>'+c.A+'</b></span><span class="L">Leave <b>'+c.L+'</b></span></div>'
+ +'<div class="grid">'+g+'</div><p class="sub" style="margin-top:12px">Tap a day to switch between P (present), A (absent), L (leave) and blank.</p>';
+}
+function sheetHTML(){
+ var s=S.sheet;if(!s)return'';var xs=extraSheet(s);if(xs)return xs;
+ if(s.type==='del'){var isS=s.id.charAt(0)==='S',o=(isS?S.students:S.teachers).filter(function(x){return x.id===s.id})[0];
+  return'<div class="ov"><div class="sheet"><h2>Remove '+(o?esc(o.name):s.id)+'?</h2><p class="sub">This deletes '+(isS?'their payment history.':'their attendance records.')+' It can’t be undone.</p><div class="acts"><button class="btn ghost" data-act="close">Cancel</button><button class="btn danger" data-act="confirmDel">Remove</button></div></div></div>'}
+ if(s.type==='student'){
+  var cl='';for(var i=1;i<=12;i++)cl+='<option>'+i+'</option>';
+  return'<div class="ov"><div class="sheet"><h2>Add student</h2><div class="f">Name<input id="f-name" autocomplete="off"></div><div class="f">Class<select id="f-cls">'+cl+'</select></div><div class="f">Board<select id="f-board"><option>CBSE</option><option>ICSE</option><option>BSEB</option></select></div><div class="f">Monthly fee (₹)<input id="f-fee" type="number" inputmode="numeric" min="0"></div><div class="acts"><button class="btn ghost" data-act="close">Cancel</button><button class="btn" data-act="saveAdd">Save student</button></div></div></div>'}
+ return'<div class="ov"><div class="sheet"><h2>Add teacher</h2><div class="f">Name<input id="f-name" autocomplete="off"></div><div class="acts"><button class="btn ghost" data-act="close">Cancel</button><button class="btn" data-act="saveAdd">Save teacher</button></div></div></div>';
+}
+function render0(){
+ var head=S.open?'<button class="back" data-act="back">Back</button><h1></h1>':'<h1>'+(S.tab==='students'?'Students':'Teachers')+'</h1>';
+ var body=S.open?detailHTML():(S.tab==='students'?studentsHTML():teachersHTML());
+ var nav=S.open?'':'<nav><button class="'+(S.tab==='students'?'on':'')+'" data-act="tab" data-v="students">Students</button><button class="'+(S.tab==='teachers'?'on':'')+'" data-act="tab" data-v="teachers">Teachers</button></nav>';
+ document.getElementById('app').innerHTML='<header>'+head+'<input type="month" id="mo" value="'+S.month+'" aria-label="Month"></header><main>'+body+'</main>'+nav+sheetHTML();
+ var f=document.getElementById('f-name');if(f)f.focus();
+}
+function setAtt(t,d,v){t.att=t.att||{};t.att[S.month]=t.att[S.month]||{};if(v)t.att[S.month][d]=v;else delete t.att[S.month][d]}
+document.addEventListener('click',function(e){
+ var b=e.target.closest('[data-act]');if(!b)return;
+ var a=b.dataset.act,id=b.dataset.id;if(act2(a,b,id)){render();return}
+ if(a==='tab'){S.tab=b.dataset.v}
+ else if(a==='flt'){S.st=b.dataset.v}
+ else if(a==='pay'){var s=S.students.filter(function(x){return x.id===id})[0];s.pay=s.pay||{};s.pay[S.month]=NEXT[stOf(s)];save()}
+ else if(a==='open'){S.open=id}
+ else if(a==='back'){S.open=null}
+ else if(a==='att'){var t=S.teachers.filter(function(x){return x.id===id})[0];setAtt(t,b.dataset.d,AN[tAtt(t)[b.dataset.d]||'']);save()}
+ else if(a==='qa'){var t2=S.teachers.filter(function(x){return x.id===id})[0],k=String(now.getDate());setAtt(t2,k,tAtt(t2)[k]===b.dataset.v?'':b.dataset.v);save()}
+ else if(a==='add'){S.sheet={type:S.tab==='students'?'student':'teacher'}}
+ else if(a==='del'){S.sheet={type:'del',id:id}}
+ else if(a==='close'){S.sheet=null}
+ else if(a==='confirmDel'){var did=S.sheet.id;S.students=S.students.filter(function(x){return x.id!==did});S.teachers=S.teachers.filter(function(x){return x.id!==did});S.sheet=null;save()}
+ else if(a==='saveAdd'){
+  var name=document.getElementById('f-name').value.trim();if(!name){document.getElementById('f-name').focus();return}
+  if(S.sheet.type==='student')S.students.push({id:nextId('S',S.students),name:name,cls:document.getElementById('f-cls').value,board:document.getElementById('f-board').value,fee:+document.getElementById('f-fee').value||0,mode:{},pay:{}});
+  else S.teachers.push({id:nextId('T',S.teachers),name:name,att:{}});
+  var nu=S.sheet.type==='student'?S.students[S.students.length-1]:S.teachers[S.teachers.length-1],cd=newCode(nu);S.sheet={type:'code',id:nu.id,name:nu.name,code:cd};save()}
+ render();
+});
+document.addEventListener('input',function(e){if(e.target.id==='q'){S.q=e.target.value;document.getElementById('list').innerHTML=listHTML()}});
+document.addEventListener('change',function(e){
+ if(e.target.id==='bf'){S.board=e.target.value;render()}
+ if(e.target.id==='mo'&&e.target.value){S.month=e.target.value;render()}
+});
+function H(s){var a=0xdeadbeef,b=0x41c6ce57;for(var i=0;i<s.length;i++){var c=s.charCodeAt(i);a=Math.imul(a^c,2654435761);b=Math.imul(b^c,1597334677)}a=Math.imul(a^(a>>>16),2246822507)^Math.imul(b^(b>>>13),3266489909);b=Math.imul(b^(b>>>16),2246822507)^Math.imul(a^(a>>>13),3266489909);return(4294967296*(2097151&b)+(a>>>0)).toString(36)}
+function newCode(o){var c=String(Math.floor(1000+Math.random()*9000));o.ch=H(o.id.replace('TRA-','')+c);return c}
+function csv(rows){return'\ufeff'+rows.map(function(r){return r.map(function(c){c=String(c==null?'':c);return/[",\n]/.test(c)?'"'+c.replace(/"/g,'""')+'"':c}).join(',')}).join('\r\n')}
+function b64(buf){var u=new Uint8Array(buf),t='',i;for(i=0;i<u.length;i+=8192)t+=String.fromCharCode.apply(null,u.subarray(i,i+8192));return btoa(t)}
+function saveFile(name,text,mt){
+ var C=window.Capacitor,P=C&&C.isNativePlatform&&C.isNativePlatform()&&C.Plugins;
+ if(P&&P.Filesystem&&P.Share){
+  var o=typeof text==='string'?{data:text,encoding:'utf8'}:{data:b64(text)};
+  P.Filesystem.writeFile({path:name,data:o.data,encoding:o.encoding,directory:'CACHE'}).then(function(r){return P.Share.share({title:name,url:r.uri,dialogTitle:'Save or share'})}).catch(function(){});return}
+ var u=window.claude&&window.claude.use?window.claude.use('downloads'):Promise.resolve(null);
+ Promise.resolve(u).then(function(d){
+  if(d)return d.save({filename:name,data:text});
+  var l=document.createElement('a');l.href=URL.createObjectURL(new Blob([text],{type:mt||'text/csv'}));l.download=name;document.body.appendChild(l);l.click();l.remove()
+ }).catch(function(){})
+}
+function doExport(a,m){if(window.ExcelJS){xlExport(a,m);return}
+ var p=m.split('-'),n=new Date(+p[0],+p[1],0).getDate(),inst=(S.cfg.name||'Academy').replace(/\W+/g,'-'),rows;
+ if(a==='expS'){rows=[['ID','Name','Class','Board','Monthly fee','Status '+m,'Payment mode']].concat(S.students.map(function(s){var st=(s.pay&&s.pay[m])||'unpaid';return[s.id,s.name,s.cls,s.board,s.fee||0,LBL[st],st==='paid'?((s.mode||{})[m]||''):'']}));saveFile(inst+'-students-'+m+'.csv',csv(rows))}
+ else{var hd=['ID','Name'];for(var d=1;d<=n;d++)hd.push(d);hd.push('Present','Absent','Leave');
+  rows=[hd].concat(S.teachers.map(function(t){var at=(t.att&&t.att[m])||{},r=[t.id,t.name],c={P:0,A:0,L:0};for(var k=1;k<=n;k++){r.push(at[k]||'');if(c[at[k]]!==undefined)c[at[k]]++}return r.concat([c.P,c.A,c.L])}));saveFile(inst+'-teacher-attendance-'+m+'.csv',csv(rows))}
+}
+function xlExport(a,m){
+ var p=m.split('-'),n=new Date(+p[0],+p[1],0).getDate(),inst=S.cfg.name||'Academy',isS=a==='expS',wb=new ExcelJS.Workbook(),ws=wb.addWorksheet(isS?'Fees':'Attendance'),i,
+ lab=new Date(+p[0],+p[1]-1,1).toLocaleString('en-IN',{month:'long',year:'numeric'}),
+ ln={style:'thin',color:{argb:'FFBBBBBB'}},bd={top:ln,left:ln,bottom:ln,right:ln},
+ fl=function(c){return{type:'pattern',pattern:'solid',fgColor:{argb:c},bgColor:{argb:c}}},
+ G=['FFDCF2E4','FF1B7F46'],R=['FFFBE1DF','FFC22D2D'],O=['FFFDE8C9','FFB85F00'],
+ cf=function(ref,map){ws.addConditionalFormatting({ref:ref,rules:Object.keys(map).map(function(k,j){return{type:'cellIs',operator:'equal',formulae:['"'+k+'"'],priority:j+1,style:{font:{color:{argb:map[k][1]},bold:true},fill:{type:'pattern',pattern:'solid',bgColor:{argb:map[k][0]}}}}})})},
+ put=function(r,vals){var row=ws.getRow(r);vals.forEach(function(v,j){var c=row.getCell(j+1);c.value=v;c.border=bd;if(j>1)c.alignment={horizontal:'center'}});return row},
+ head=isS?['ID','Name','Class','Board','Fee (₹)','Status','Payment mode']:['ID','Name'];
+ if(!isS){for(i=1;i<=n;i++)head.push(i);head.push('Present','Absent','Leave')}
+ var nc=head.length,last=2+(isS?S.students.length:S.teachers.length);
+ ws.mergeCells(1,1,1,nc);var tc=ws.getCell(1,1);tc.value=inst.toUpperCase()+' - '+(isS?'Student fees':'Teacher attendance')+', '+lab;tc.font={bold:true,size:14,color:{argb:'FFFFFFFF'}};tc.fill=fl('FF2A3F8F');tc.alignment={vertical:'middle'};ws.getRow(1).height=28;
+ head.forEach(function(h,j){var c=ws.getCell(2,j+1);c.value=h;c.font={bold:true,color:{argb:'FFFFFFFF'}};c.fill=fl('FF4A5FA8');c.alignment={horizontal:'center'};c.border=bd});
+ ws.getColumn(1).width=12;ws.getColumn(2).width=22;
+ if(isS){
+  [8,9,10,11,15].forEach(function(w,j){ws.getColumn(3+j).width=w});
+  var tot={Paid:0,Pending:0,Unpaid:0};
+  S.students.forEach(function(s,k){var st=(s.pay&&s.pay[m])||'unpaid',row=put(3+k,[s.id,s.name,s.cls,s.board,s.fee||0,LBL[st],st==='paid'?((s.mode||{})[m]||''):'']);tot[LBL[st]]+=s.fee||0;row.getCell(5).numFmt='#,##0';row.getCell(6).dataValidation={type:'list',allowBlank:false,formulae:['"Paid,Pending,Unpaid"']};row.getCell(7).dataValidation={type:'list',allowBlank:true,formulae:['"UPI,Card,Net banking,Cash"']}});
+  cf('F3:F'+last,{Paid:G,Pending:O,Unpaid:R});
+  Object.keys(tot).forEach(function(k,q){var r=last+2+q,lb=ws.getCell(r,4),v=ws.getCell(r,5);lb.value=k==='Paid'?'Collected':k;lb.font={bold:true};v.value={formula:'SUMIF(F3:F'+last+',"'+k+'",E3:E'+last+')',result:tot[k]};v.numFmt='#,##0';v.font={bold:true}})
+ }else{
+  for(i=3;i<=n+2;i++)ws.getColumn(i).width=4.5;for(i=n+3;i<=n+5;i++)ws.getColumn(i).width=9;
+  var f=ws.getColumn(3).letter,l=ws.getColumn(n+2).letter;
+  S.teachers.forEach(function(t,k){var at=(t.att&&t.att[m])||{},r=3+k,v=[t.id,t.name],c={P:0,A:0,L:0},x;for(x=1;x<=n;x++){v.push(at[x]||'');if(c[at[x]]!==undefined)c[at[x]]++}
+   var row=put(r,v);for(x=3;x<=n+2;x++)row.getCell(x).dataValidation={type:'list',allowBlank:true,formulae:['"P,A,L"']};
+   ['P','A','L'].forEach(function(z,q){var cc=row.getCell(n+3+q);cc.value={formula:'COUNTIF('+f+r+':'+l+r+',"'+z+'")',result:c[z]};cc.border=bd;cc.font={bold:true};cc.alignment={horizontal:'center'}})});
+  cf('C3:'+l+last,{P:G,A:R,L:O})
+ }
+ ws.views=[{state:'frozen',xSplit:2,ySplit:2}];ws.pageSetup={orientation:'landscape',fitToPage:true,fitToWidth:1,fitToHeight:0};
+ wb.xlsx.writeBuffer().then(function(b){saveFile(inst.replace(/\W+/g,'-')+(isS?'-students-':'-teacher-attendance-')+m+'.xlsx',b,'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')}).catch(function(){})
+}
+function lockNow(){S.user=null;S.sheet=null;S.open=null;S.lock.err='';render()}
+var hid=0;document.addEventListener('visibilitychange',function(){if(document.hidden)hid=Date.now();else if(S.user&&Date.now()-hid>60000)lockNow()});
+function lockHTML(){var L=S.lock;
+ if(!S.cfg.pin)return'<div class="lock"><h1>Set up Coaching Manager</h1><p class="sub">Create a 4-digit admin PIN. You will need it each time the app opens.</p><div class="f">New PIN<input id="p1" type="password" inputmode="numeric" maxlength="4"></div><div class="f">Repeat PIN<input id="p2" type="password" inputmode="numeric" maxlength="4"></div><div class="err">'+esc(L.err)+'</div><button class="btn" data-act="setup">Create PIN</button></div>';
+ var ad=L.role==='admin';
+ return'<div class="lock"><h1>'+esc(S.cfg.name||'Coaching Manager')+'</h1><div class="chips">'+['admin','teacher','student'].map(function(r){return'<button class="chip'+(L.role===r?' on':'')+'" data-act="role" data-v="'+r+'">'+r.charAt(0).toUpperCase()+r.slice(1)+'</button>'}).join('')+'</div>'+(ad?'':'<div class="f">'+(L.role==='teacher'?'Teacher':'Student')+' ID<input id="l-id" autocapitalize="characters" placeholder="'+(L.role==='teacher'?'TRA-T001':'TRA-S001')+'"></div>')+'<div class="f">'+(ad?'Admin PIN':'Access code')+'<input id="l-pw" type="password" inputmode="numeric" maxlength="4"></div><div class="err">'+esc(L.err)+'</div><button class="btn" data-act="login">Unlock</button></div>'}
+function login(){var L=S.lock,t=Date.now();
+ if(t<L.until){L.err='Too many attempts. Try again in '+Math.ceil((L.until-t)/1000)+' seconds.';return}
+ var pw=document.getElementById('l-pw').value,ok=false,id='';
+ if(L.role==='admin')ok=H('admin'+pw)===S.cfg.pin;
+ else{id=document.getElementById('l-id').value.trim().toUpperCase();if(id.indexOf('TRA-')!==0)id='TRA-'+id;var o=(L.role==='teacher'?S.teachers:S.students).filter(function(x){return x.id===id})[0];ok=!!o&&o.ch===H(id.replace('TRA-','')+pw)}
+ if(ok){L.fails=0;L.err='';S.user={role:L.role,id:id};S.tab=L.role==='student'?'me':'students'}
+ else{L.fails++;L.err=L.role==='admin'?'Wrong PIN.':'Wrong ID or access code.';if(L.fails>=5){L.until=t+30000;L.fails=0}}}
+function noticesHTML(){var r=S.user.role,l=S.notices.filter(function(n){return r==='admin'||n.to==='All'||n.to===(r==='teacher'?'Teachers':'Students')});
+ return(r==='admin'?'<div class="row"><button class="btn" style="flex:1" data-act="addNotice">Post notice</button></div>':'')+(l.length?l.map(function(n){return'<div class="card" style="border-left-color:var(--brand)"><div class="name">'+esc(n.t)+'</div><div class="sub"><span>'+n.d+'</span><span>For '+n.to+'</span></div><p style="margin:8px 0 0;white-space:pre-wrap">'+esc(n.b)+'</p><button class="link" data-act="delNotice" data-id="'+n.id+'">Delete notice</button></div>'}).join(''):'<div class="empty">No notices yet.</div>')}
+function upiBtn(s){return S.cfg.upi&&s.fee?'<a class="btn" style="display:block;text-align:center;text-decoration:none;margin-top:12px" href="upi://pay?pa='+encodeURIComponent(S.cfg.upi)+'&pn='+encodeURIComponent(S.cfg.name||'Coaching')+'&am='+s.fee+'&cu=INR&tn='+encodeURIComponent('Fee '+S.month+' '+s.id)+'">Pay ₹'+s.fee+' via UPI</a><p class="sub">After you pay, the coaching centre marks it as paid.</p>':'<p class="sub">Online payment is not set up yet. Ask the coaching centre.</p>'}
+function meHTML(){var s=S.students.filter(function(x){return x.id===S.user.id})[0];if(!s)return'';var st=stOf(s),m=(s.mode||{})[S.month];
+ return'<div class="card '+st+'"><div class="name">'+esc(s.name)+'</div><div class="sub"><span>'+s.id+'</span><span>Class '+esc(s.cls)+'</span><span>'+s.board+'</span></div><div class="top" style="margin-top:10px"><div class="n"><div class="sub">'+mlabel()+'</div><div class="name">₹'+(s.fee||0)+'</div>'+(m&&st==='paid'?'<div class="sub">Paid by '+m+'</div>':'')+'</div><span class="pill '+st+'">'+LBL[st]+'</span></div>'+(st!=='paid'?upiBtn(s):'')+'</div>'}
+function settingsHTML(){var h2='<h2 style="font-size:17px;margin:26px 0 8px">';
+ return'<div class="f">Coaching name<input id="s-name" value="'+esc(S.cfg.name||'')+'"></div><div class="f">UPI ID for fee payments<input id="s-upi" placeholder="name@bank" value="'+esc(S.cfg.upi||'')+'"></div><button class="btn" data-act="saveCfg">'+(S.flash==='cfg'?'Saved':'Save payment settings')+'</button>'
+ +h2+'Admin PIN</h2><div class="row"><input id="c-pin" type="password" inputmode="numeric" maxlength="4" placeholder="New 4-digit PIN"><button class="btn" style="display:inline-block" data-act="changePin">'+(S.flash==='pin'?'PIN updated':S.flash==='badpin'?'Use 4 digits':'Update')+'</button></div>'
+ +h2+'Export data</h2><p class="sub">Downloads a coloured Excel file with dropdowns and totals. It also opens in Google Sheets.</p><div class="f">Month<input id="e-mo" type="month" value="'+S.month+'"></div><div class="row"><button class="btn" style="flex:1" data-act="expS">Students and fees</button><button class="btn" style="flex:1" data-act="expT">Teacher attendance</button></div>'
+ +h2+'Access codes</h2><p class="sub">Teachers and students sign in with their ID and a 4-digit code. Codes are not stored in readable form, so reset one to issue a new code. Sample members use 1234.</p>'
+ +S.teachers.concat(S.students).map(function(o){return'<div class="card" style="border-left-color:var(--line)"><div class="top"><div class="n"><div class="name">'+esc(o.name)+'</div><div class="sub"><span>'+o.id+'</span></div></div><button class="btn ghost" data-act="newCode" data-id="'+o.id+'">Reset code</button></div></div>'}).join('')}
+function extraSheet(s){var o='<div class="ov"><div class="sheet">',c='</div></div>';
+ if(s.type==='code')return o+'<h2>Access code for '+esc(s.name)+'</h2><p class="name" style="font-size:32px;letter-spacing:6px;margin:8px 0">'+s.code+'</p><p class="sub">ID '+s.id+'. Share this code privately. It will not be shown again.</p><div class="acts"><button class="btn" data-act="close">Done</button></div>'+c;
+ if(s.type==='notice')return o+'<h2>Post notice</h2><div class="f">Title<input id="n-t"></div><div class="f">Message<input id="n-b"></div><div class="f">For<select id="n-to"><option>All</option><option>Students</option><option>Teachers</option></select></div><div class="acts"><button class="btn ghost" data-act="close">Cancel</button><button class="btn" data-act="saveNotice">Post</button></div>'+c;
+ if(s.type==='pay'){var q=S.students.filter(function(x){return x.id===s.id})[0],cur=s.st||stOf(q),md=s.md||(q.mode||{})[S.month]||'UPI';
+  return o+'<h2>'+esc(q.name)+', '+mlabel()+'</h2><p class="sub">Fee ₹'+(q.fee||0)+'</p><div class="chips">'+['unpaid','pending','paid'].map(function(k){return'<button class="chip'+(cur===k?' on':'')+'" data-act="setSt" data-v="'+k+'">'+LBL[k]+'</button>'}).join('')+'</div>'+(cur==='paid'?'<div class="f">Payment mode<div class="chips">'+['UPI','Card','Net banking','Cash'].map(function(k){return'<button class="chip'+(md===k?' on':'')+'" data-act="setMd" data-v="'+k+'">'+k+'</button>'}).join('')+'</div></div>':'')+'<div class="acts"><button class="btn ghost" data-act="close">Cancel</button><button class="btn" data-act="savePay">Save</button></div>'+c}
+ return''}
+var ADM=/^(pay|savePay|setSt|setMd|add|del|confirmDel|saveAdd|att|qa|addNotice|saveNotice|delNotice|saveCfg|changePin|newCode|expS|expT)$/;
+function act2(a,b,id){var u=S.user,L=S.lock,v=function(i){return document.getElementById(i).value};
+ if(a==='role'){L.role=b.dataset.v;L.err='';return 1}
+ if(a==='setup'){var p=v('p1');if(!/^\d{4}$/.test(p))L.err='Use exactly 4 digits.';else if(p!==v('p2'))L.err='The PINs do not match.';else{S.cfg.pin=H('admin'+p);L.err='';save()}return 1}
+ if(a==='login'){login();return 1}
+ if(!u)return 1;
+ if(a==='logout'){lockNow();return 1}
+ S.flash='';
+ if(ADM.test(a)&&u.role!=='admin')return 1;
+ if(a==='pay'){S.sheet={type:'pay',id:id};return 1}
+ if(a==='setSt'){S.sheet.st=b.dataset.v;return 1}
+ if(a==='setMd'){S.sheet.md=b.dataset.v;return 1}
+ if(a==='savePay'){var q=S.students.filter(function(x){return x.id===S.sheet.id})[0],ns=S.sheet.st||stOf(q);q.pay=q.pay||{};q.pay[S.month]=ns;q.mode=q.mode||{};if(ns==='paid')q.mode[S.month]=S.sheet.md||q.mode[S.month]||'UPI';else delete q.mode[S.month];S.sheet=null;save();return 1}
+ if(a==='addNotice'){S.sheet={type:'notice'};return 1}
+ if(a==='saveNotice'){var t=v('n-t').trim();if(!t){document.getElementById('n-t').focus();return 1}S.notices.unshift({id:Date.now(),t:t,b:v('n-b').trim(),to:v('n-to'),d:new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short'})});S.sheet=null;save();return 1}
+ if(a==='delNotice'){S.notices=S.notices.filter(function(n){return String(n.id)!==id});save();return 1}
+ if(a==='saveCfg'){S.cfg.name=v('s-name').trim();S.cfg.upi=v('s-upi').trim();S.flash='cfg';save();return 1}
+ if(a==='changePin'){var np=v('c-pin');if(/^\d{4}$/.test(np)){S.cfg.pin=H('admin'+np);S.flash='pin';save()}else S.flash='badpin';return 1}
+ if(a==='expS'||a==='expT'){doExport(a,document.getElementById('e-mo').value||S.month);return 1}
+ if(a==='newCode'){var m=S.teachers.concat(S.students).filter(function(x){return x.id===id})[0],cd=newCode(m);S.sheet={type:'code',id:m.id,name:m.name,code:cd};save();return 1}
+ return 0}
+function render(){var app=document.getElementById('app'),u=S.user;
+ if(!u){document.body.dataset.role='';app.innerHTML=lockHTML();return}
+ var r=u.role;document.body.dataset.role=r;
+ var tabs=r==='admin'?[['students','Students'],['teachers','Teachers'],['notices','Notices'],['settings','Settings']]:r==='teacher'?[['students','Students'],['teachers','Attendance'],['notices','Notices']]:[['me','My fees'],['notices','Notices']];
+ var T={students:'Students',teachers:r==='teacher'?'My attendance':'Teachers',notices:'Notices',settings:'Settings',me:'My fees'};
+ var head=S.open?'<button class="back" data-act="back">Back</button><h1></h1>':'<h1>'+T[S.tab]+'</h1>';
+ var body=S.open?detailHTML():S.tab==='students'?studentsHTML():S.tab==='teachers'?teachersHTML():S.tab==='notices'?noticesHTML():S.tab==='settings'?settingsHTML():meHTML();
+ var nav=S.open?'':'<nav>'+tabs.map(function(t){return'<button class="'+(S.tab===t[0]?'on':'')+'" data-act="tab" data-v="'+t[0]+'">'+t[1]+'</button>'}).join('')+'</nav>';
+ app.innerHTML='<header>'+head+(S.tab==='notices'||S.tab==='settings'?'':'<input type="month" id="mo" value="'+S.month+'" aria-label="Month">')+'<button class="back" data-act="logout">Lock</button></header><main>'+body+'</main>'+nav+sheetHTML();
+ var f=document.getElementById('f-name')||document.getElementById('n-t');if(f)f.focus()}
+load();render();
+</script>
+</body>
+</html>
